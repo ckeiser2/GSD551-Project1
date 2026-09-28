@@ -36,25 +36,11 @@ public class PlayerMovement : MonoBehaviour
     {
     
         horizontalInput = Keyboard.current.dKey.ReadValue() - Keyboard.current.aKey.ReadValue();
-
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             jumpPressed = true;
         }
         
-        if (horizontalInput != 0)
-        {
-            Vector3 movementDirection = Vector3.right * horizontalInput;
-            Vector3 movement = movementDirection * movementSpeed;
-
-            Debug.Log(movement);
-            
-            transform.position += movement * Time.deltaTime;
-            
-            
-        }
-
-
     }
 
     private void FixedUpdate()
@@ -79,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded)
         {
-            Gizmos.color = Color.aquamarine;    
+            Gizmos.color = Color.green;    
         }
         else
         {
@@ -106,6 +92,8 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 jumpVelocity = new Vector2(playerRigidBody.linearVelocity.x, jumpSpeed);
         playerRigidBody.linearVelocity = jumpVelocity;
+        Debug.Log("The player jumped");
+
     }
 
     private void CheckGround()
